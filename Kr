@@ -1,0 +1,57 @@
+// Создаем интерфейс для всех домашних животных
+interface Animal {
+    void sound();
+}
+
+// Создаем классы для каждого вида домашних животных
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Гав-гав");
+    }
+}
+
+class Cat implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Мяу-мяу");
+    }
+}
+
+class Parrot implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Попугай говорит");
+    }
+}
+
+// Создаем фабрику для создания животных
+class AnimalFactory {
+    public Animal createAnimal(String type) {
+        switch (type) {
+            case "dog":
+                return new Dog();
+            case "cat":
+                return new Cat();
+            case "parrot":
+                return new Parrot();
+            default:
+                throw new IllegalArgumentException("Invalid animal type");
+        }
+    }
+}
+
+public class AnimalManagement {
+    public static void main(String[] args) {
+        AnimalFactory animalFactory = new AnimalFactory();
+
+        Animal dog = animalFactory.createAnimal("dog");
+        dog.sound();
+
+        Animal cat = animalFactory.createAnimal("cat");
+        cat.sound();
+
+        Animal parrot = animalFactory.createAnimal("parrot");
+        parrot.sound();
+    }
+}
